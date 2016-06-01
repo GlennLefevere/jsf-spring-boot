@@ -1,0 +1,29 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:m="http://example.com/functions"
+	xmlns:cust="http://java.sun.com/jsf/composite/components"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<h:head />
+	<h:body>
+		<h:form prependId="false">
+			<h:outputScript library="js" name="jquery-1.12.3.min.js" />
+			<h:outputScript library="primefaces" name="primefaces.js" />
+			<h:outputScript library="js" name="Chart.js" />
+			<h:outputStylesheet library="style" name="style.css" />
+
+			<p:panelGrid columns="3" styleClass="colapsed">
+
+				<c:forEach items="#{smallNumberBean.charts}" var="chart">
+					<p:column>
+						<cust:chart value="#{chart}" bean="#{smallNumberBean}" />
+					</p:column>
+				</c:forEach>
+				<p:column/>
+				<p:column><div id="legend"></div></p:column>
+				<p:column/>
+			</p:panelGrid>
+		</h:form>
+	</h:body>
+</f:view>

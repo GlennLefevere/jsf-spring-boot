@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3c.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      >
+      
+      <composite:interface>
+      	<composite:attribute name="value" required="true"/>
+      	<composite:attribute name="bean" required="true"/>
+      </composite:interface>
+      
+      <composite:implementation>
+      	<canvas id="#{cc.attrs.value.id}"></canvas>
+      	
+      	<script>
+      	
+      	$( window ).load(function() {
+          	var test = #{cc.attrs.bean.getChart(cc.attrs.value)};
+          	if(test.options.legend.display){
+          		var selector = "legend";
+          		var labels = test.data.labels;
+          		var colors = test.data.datasets[0].backgroundColor;
+          		console.log(labels);
+          		console.log(colors);
+          		console.log("#{cc.attrs.clientId}");
+          		createLegend(selector, labels, colors);
+          		test.options.legend.display = false;
+          	}
+          	var ctx = $("#" + test.id).get(0).getContext('2d');
+          	window.myPie = new Chart(ctx, test);          	
+      	});
+      	
+      	function createLegend(selector, labels, colors){
+      		$.each(labels, function(index, value){
+      			$("<div></div>").appendTo("#" + selector).attr("id", "legend" + index).addClass("left");
+      			$("<div></div>").appendTo("#legend" + index).css("background-color", colors[index]).addClass("test");
+      			$("<span>" + value + "</span>").appendTo("#legend" + index);
+      		});
+      	}
+      	
+      	</script>
+      </composite:implementation>
+</html>

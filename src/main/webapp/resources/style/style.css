@@ -1,0 +1,25 @@
+.ui-panelgrid.ui-widget.colapsed {
+	border-collapse: inherit;
+}
+
+.colapsed>tbody>tr>td {
+	border: none !important;
+}
+
+.test {
+	width: 40px;
+	height: 20px;
+	border: 1px solid grey;
+	float: left;
+	margin-right: 10px;
+	display: table-cell;
+}
+.left{
+	float: left;
+	margin-right: 10px;
+}
+
+#legend{
+	display: table;
+    table-layout: fixed;
+}
